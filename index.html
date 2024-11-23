@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 </head>
 <body>
     <div class="container">
@@ -90,16 +92,16 @@
                 <h2>Issued Certificates</h2>
                 <ul class="nav nav-tabs mb-3">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#" onclick="filterCertificates('all')">All (<span id="totalAll">0</span>)</a>
+                        <a class="nav-link active" href="#" onclick="filterCertificates('all'); return false;">All (<span id="totalAll">0</span>)</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="filterCertificates('birth')">Birth (<span id="totalBirth">0</span>)</a>
+                        <a class="nav-link" href="#" onclick="filterCertificates('birth'); return false;">Birth (<span id="totalBirth">0</span>)</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="filterCertificates('death')">Death (<span id="totalDeath">0</span>)</a>
+                        <a class="nav-link" href="#" onclick="filterCertificates('death'); return false;">Death (<span id="totalDeath">0</span>)</a>
                     </li>
                 </ul>
-                <table class="table">
+                <table class="table" id="certificatesList">
                     <thead>
                         <tr>
                             <th>Certificate ID</th>
@@ -107,8 +109,11 @@
                             <th>Details</th>
                         </tr>
                     </thead>
-                    <tbody id="certificatesList"></tbody>
+                    <tbody id="certificatesList"></tbody>                  
                 </table>
+                <div id="certificateList">
+                    <!-- Certificates will be dynamically populated here -->
+                </div>
             </div>
             <div class="tab-pane fade" id="find">
                 <h2>Find Certificate</h2>
@@ -125,6 +130,9 @@
         </div>
     </div>
     
+    <!-- Web3.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.6.1/dist/web3.min.js"></script>
+    <!-- Your custom JavaScript file -->
     <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
